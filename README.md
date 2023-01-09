@@ -1,13 +1,16 @@
 # Getting Started with Terraform
+
 Terraform is an infrastructure tool for defining and provisioning infrastructure as code (IaC). You can version, reuse, and share your stack with any platform or service that has an accessible API. 
 This guide will run through how to initialize, plan, provision, and destroy a NGINX server inside a Docker container.
 
 ## Prerequisites
+
 + [Docker](https://www.docker.com/products/docker-desktop/)
 + [Terraform](https://www.terraform.io/downloads.html)
 
 ## Terraform Tutorial
-Verify you are able to view terraform commands by running `terraform`. Now, you can start creating some infrastructure.
+
+Verify you are able to view Terraform commands by running `terraform`. Now, you can start creating some infrastructure.
 
 We recommend creating a new directory on your local machine and creating your Terraform configuration code inside it. 
 
@@ -22,7 +25,7 @@ Next, create a file for your Terraform configuration code.
 $ touch main.tf
 ```
 
-Paste the following lines into the file and save the changes.
+Paste the following lines into the file. Save the changes.
 
 ```hcl
 terraform {
@@ -48,23 +51,33 @@ resource "docker_image" "nginx" {
 }
 ```
 
-Initialize Terraform with the `init` command. This will install the AWS provider. 
+Initialize Terraform with the `init` command. This will download a plugin allowing Terraform and Docker to interact.
 
 ```shell
 $ terraform init
-```
-**Init Output**
-```shell
+Initializing the backend...
+Initializing provider plugins...
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider selections it made above.
+
 Terraform has been successfully initialized!
+
+You may now begin working with Terraform.
 ```
 
-Preview what actions Terraform will take.
+Preview what actions Terraform will take with the `plan` command.
 
 ```shell
 $ terraform plan
-```
-**Plan Output**
-```shell
+Terraform used the selected providers to generate the following execution plan. 
+
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_container.nginx will be created
+
 Plan: 2 to add, 0 to change, 0 to destroy.
 ```
 
@@ -72,35 +85,57 @@ Address errors before continuing. Provision the resource with the `apply` comman
 
 ```shell
 $ terraform apply
-```
-Type `yes` and hit ENTER.
+Plan: 2 to add, 0 to change, 0 to destroy.
 
-**Apply Output**
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value:
+```
+
+Apply the configuration to provision the resources. Enter `yes` to confirm the action.
+
 ```shell
 Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 ```
 
 The command will take a few minutes to run. Visit [localhost:80](localhost:80) to verify your NGINX server is running.
+
 ![terraform has successfully installed](https://content.hashicorp.com/api/assets?product=tutorials&version=main&asset=public%2Fimg%2Fterraform%2Fgetting-started%2Fterraform-docker-nginx.png)
 
-Finally, destroy the infrastructure.
+Finally, destroy the infrastructure with the `destroy` command.
 
 ```shell
 $ terraform destroy
+Terraform used the selected providers to generate the following execution plan.
+Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # docker_container.nginx will be destroyed
+
+Plan: 0 to add, 0 to change, 2 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value:
 ```
 
-Confirm you want to destroy all resources. Type `yes` and hit ENTER. 
+Destroy all resources. Enter `yes` to confirm the action.
 
-**Destroy Output**
 ```shell
 Destroy complete! Resources: 2 destroyed.
 ```
 
 ## Next Steps
+
 You have installed Terraform and learned how to initialize, plan, provision, and destroy a NGINX web server.
 
 Now you can now create infrastructure in the cloud.
-
 + [Amazon Web Services (AWS)](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build)
 + [Azure](https://developer.hashicorp.com/terraform/tutorials/azure-get-started/azure-build)
 + [Docker](https://developer.hashicorp.com/terraform/tutorials/docker-get-started/docker-build)
