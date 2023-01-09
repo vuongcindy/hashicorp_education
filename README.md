@@ -2,17 +2,11 @@
 Terraform is an infrastructure tool for defining and provisioning infrastructure as code (IaC). You can version, reuse, and share your stack with any platform or service that has an accessible API. 
 This guide will run through how to initialize, plan, provision, and destroy a NGINX server inside a Docker container.
 
-<br>
-
 ## Prerequisites
-
 + [Docker](https://www.docker.com/products/docker-desktop/)
 + [Terraform](https://www.terraform.io/downloads.html)
 
-<br>
-
 ## Terraform Tutorial
-
 Verify you are able to view terraform commands by running `terraform`. Now, you can start creating some infrastructure.
 
 We recommend creating a new directory on your local machine and creating your Terraform configuration code inside it. 
@@ -60,12 +54,9 @@ Initialize Terraform with the `init` command. This will install the AWS provider
 $ terraform init
 ```
 **Init Output**
-<br>
 ```shell
 Terraform has been successfully initialized!
 ```
-
-
 
 Preview what actions Terraform will take.
 
@@ -73,7 +64,6 @@ Preview what actions Terraform will take.
 $ terraform plan
 ```
 **Plan Output**
-<br>
 ```shell
 Plan: 2 to add, 0 to change, 0 to destroy.
 ```
@@ -86,7 +76,6 @@ $ terraform apply
 Type `yes` and hit ENTER.
 
 **Apply Output**
-<br>
 ```shell
 Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 ```
@@ -103,15 +92,13 @@ $ terraform destroy
 Confirm you want to destroy all resources. Type `yes` and hit ENTER. 
 
 **Destroy Output**
-<br>
 ```shell
 Destroy complete! Resources: 2 destroyed.
 ```
 
 ## Next Steps
-
 You have installed Terraform and learned how to initialize, plan, provision, and destroy a NGINX web server.
-<br>
+
 Now you can now create infrastructure in the cloud.
 
 + [Amazon Web Services (AWS)](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build)
