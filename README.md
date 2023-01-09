@@ -1,12 +1,21 @@
 # Getting Started with Terraform
+Terraform is an infrastructure tool for defining and provisioning infrastructure as code (IaC). You can version, reuse, and share your stack with any platform or service that has an accessible API. 
+This guide will run through how to initialize, plan, provision, and destroy a NGINX server inside a Docker container.
 
-Terraform is the most popular langauge for defining and provisioning infrastructure as code (IaC).
+<br>
 
-To install Terraform, simply visit [Terraform.io](https://www.terraform.io/downloads.html) and download the compressed binary application executable file deliverable for your platform, machine or environment on which you like to run code and do development.
+## Prerequisites
 
-With Terraform installed, let's dive right into it and start creating some infrastructure.
++ [Docker](https://www.docker.com/products/docker-desktop/)
++ [Terraform](https://www.terraform.io/downloads.html)
 
-Most guys find it easiest to create a new directory on there local machine and create Terraform configuration code inside it.
+<br>
+
+## Terraform Tutorial
+
+Verify you are able to view terraform commands by running `terraform`. Now, you can start creating some infrastructure.
+
+We recommend creating a new directory on your local machine and creating your Terraform configuration code inside it. 
 
 ```shell
 $ mkdir terraform-demo
@@ -19,7 +28,7 @@ Next, create a file for your Terraform configuration code.
 $ touch main.tf
 ```
 
-Paste the following lines into the file.
+Paste the following lines into the file and save the changes.
 
 ```hcl
 terraform {
@@ -45,19 +54,45 @@ resource "docker_image" "nginx" {
 }
 ```
 
-Initialize Terraform with the `init` command. The AWS provider will be installed. 
+Initialize Terraform with the `init` command. This will install the AWS provider. 
 
 ```shell
 $ terraform init
 ```
+**Init Output**
+<br>
+```shell
+Terraform has been successfully initialized!
+```
 
-You shoud check for any errors. If it ran successfully, provision the resource with the `apply` command.
+
+
+Preview what actions Terraform will take.
+
+```shell
+$ terraform plan
+```
+**Plan Output**
+<br>
+```shell
+Plan: 2 to add, 0 to change, 0 to destroy.
+```
+
+Address errors before continuing. Provision the resource with the `apply` command.
 
 ```shell
 $ terraform apply
 ```
+Type `yes` and hit ENTER.
 
-The command will take up to a few minutes to run and will display a message indicating that the resource was created.
+**Apply Output**
+<br>
+```shell
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+```
+
+The command will take a few minutes to run. Visit [localhost:80](localhost:80) to verify your NGINX server is running.
+![terraform has successfully installed](https://content.hashicorp.com/api/assets?product=tutorials&version=main&asset=public%2Fimg%2Fterraform%2Fgetting-started%2Fterraform-docker-nginx.png)
 
 Finally, destroy the infrastructure.
 
@@ -65,4 +100,22 @@ Finally, destroy the infrastructure.
 $ terraform destroy
 ```
 
-Look for a message are the bottom of the output asking for confirmation. Type `yes` and hit ENTER. Terraform will destroy the resources it had created earlier.
+Confirm you want to destroy all resources. Type `yes` and hit ENTER. 
+
+**Destroy Output**
+<br>
+```shell
+Destroy complete! Resources: 2 destroyed.
+```
+
+## Next Steps
+
+You have installed Terraform and learned how to initialize, plan, provision, and destroy a NGINX web server.
+<br>
+Now you can now create infrastructure in the cloud.
+
++ [Amazon Web Services (AWS)](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build)
++ [Azure](https://developer.hashicorp.com/terraform/tutorials/azure-get-started/azure-build)
++ [Docker](https://developer.hashicorp.com/terraform/tutorials/docker-get-started/docker-build)
++ [Google Cloud Platform (GCP)](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build)
++ [Oracle Cloud Platform (OCI)](https://developer.hashicorp.com/terraform/tutorials/oci-get-started/oci-build)
