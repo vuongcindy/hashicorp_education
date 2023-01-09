@@ -5,14 +5,16 @@ This guide will run through how to initialize, plan, provision, and destroy a NG
 
 ## Prerequisites
 
-+ [Docker](https://www.docker.com/products/docker-desktop/)
-+ [Terraform](https://www.terraform.io/downloads.html)
++ [Docker](https://www.docker.com/products/docker-desktop/) v20.10.20
++ [Terraform](https://www.terraform.io/downloads.html) v1.3.7 
 
 ## Terraform Tutorial
 
 Verify you are able to view Terraform commands by running `terraform`. Now, you can start creating some infrastructure.
 
-We recommend creating a new directory on your local machine and creating your Terraform configuration code inside it. 
+### Create configuration
+
+Create a new directory for your Terraform configuration. 
 
 ```shell
 $ mkdir terraform-demo
@@ -51,6 +53,8 @@ resource "docker_image" "nginx" {
 }
 ```
 
+### Connect Terraform and Docker
+
 Initialize Terraform with the `init` command. This will download a plugin allowing Terraform and Docker to interact.
 
 ```shell
@@ -64,6 +68,8 @@ Terraform has been successfully initialized!
 
 You may now begin working with Terraform.
 ```
+
+### View Execution Plan
 
 Preview what actions Terraform will take with the `plan` command.
 
@@ -80,8 +86,11 @@ Terraform will perform the following actions:
 
 Plan: 2 to add, 0 to change, 0 to destroy.
 ```
+Address errors before continuing. 
 
-Address errors before continuing. Provision the resource with the `apply` command.
+### Create Resources
+
+Provision the resource with the `apply` command.
 
 ```shell
 $ terraform apply
@@ -104,7 +113,9 @@ The command will take a few minutes to run. Visit [localhost:80](localhost:80) t
 
 ![terraform has successfully installed](https://content.hashicorp.com/api/assets?product=tutorials&version=main&asset=public%2Fimg%2Fterraform%2Fgetting-started%2Fterraform-docker-nginx.png)
 
-Finally, destroy the infrastructure with the `destroy` command.
+### Destroy Resources
+
+Destroy the infrastructure with the `destroy` command.
 
 ```shell
 $ terraform destroy
